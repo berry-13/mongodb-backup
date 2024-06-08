@@ -6,7 +6,7 @@ This Docker container automates backups for a MongoDB database using `mongodump`
 
 ### Prerequisites
 
-- Docker and Docker Compose installed on your machine
+- Docker installed on your machine
 
 ### Instructions
 
@@ -17,22 +17,36 @@ This Docker container automates backups for a MongoDB database using `mongodump`
    cd mongodb-backup
    ```
 
-2. Run the Docker containers:
+2. Build the Docker image:
 
    ```sh
-   docker-compose up -d
+   docker build -t mongo-backup .
    ```
+
+3. Run the Docker container:
+
+   ```sh
+   docker run -d \
+     --name mongo-backup \
+     -e MONGO_URI=mongodb://root:example@your-mongo-host:27017 \
+     -e BACKUP_INTERVAL=86400 \
+     -v /path/to/backup:/backup/data \
+     mongo-backup
+   ```
+
+   Replace `/path/to/backup` with the local directory where you want to store the backups
 
 ### Configuration
 
-- The `mongo-backup` container uses the `MONGO_URI` environment variable to connect to the MongoDB instance. Adjust this variable in the `docker-compose.yml` file if needed
-- Backups are stored in the `mongo-backup` volume
+- The `MONGO_URI` environment variable specifies the MongoDB connection string
+- The `BACKUP_INTERVAL` environment variable specifies the interval between backups in seconds (default is 86400 seconds, or 24 hours)
+- Backups are stored in the `/backup/data` directory inside the container
 
 ### Backup Script
 
 The `backup.sh` script performs the following actions:
 - Creates a timestamped backup directory
-- Runs `mongodump` to backup the MongoDB database
+- Runs `mongodump` to backup the MongoDB database.
 - Removes backups older than 7 days
 
 ### Restore a Backup
@@ -40,7 +54,7 @@ The `backup.sh` script performs the following actions:
 To restore a backup, use the `mongorestore` command:
 
 ```sh
-docker run --rm -v mongo-backup:/backup mongo mongorestore --uri "mongodb://root:example@mongodb:27017" /backup/data/<backup-folder>
+docker run --rm -v /path/to/backup:/backup/data mongo mongorestore --uri "mongodb://root:example@your-mongo-host:27017" /backup/data/<backup-folder>
 ```
 
-Replace `<backup-folder>` with the desired backup directory
+Replace `/path/to/backup` with the local backup directory and `<backup-folder>` with the desired backup directory
