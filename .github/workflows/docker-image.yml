@@ -32,4 +32,4 @@ jobs:
       - name: Tag and push bot image
         run: |
           docker tag mongodb-backup:latest ghcr.io/${{ github.repository_owner }}/mongodb-backup:${{ github.sha }}
-          docker push ghcr.io/${{ github.repository_owner }}/mongodb-backup:${{ github.sha }}
+          docker push ghcr.io/${{ github.repository_owner }}/mongodb-backup:latest
