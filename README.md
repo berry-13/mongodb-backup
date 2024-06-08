@@ -1,6 +1,6 @@
 # MongoDB Backup Docker Container
 
-This Docker container automates backups for a MongoDB database using `mongodump`. Backups are stored in a volume and old backups are deleted after 7 days
+This Docker container automates backups for a MongoDB database using `mongodump`
 
 ## Usage
 
