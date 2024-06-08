@@ -10,20 +10,13 @@ This Docker container automates backups for a MongoDB database using `mongodump`
 
 ### Instructions
 
-1. Clone this repository:
+1. Pull the image:
 
    ```sh
-   git clone https://github.com/berry-13/mongodb-backup.git
-   cd mongodb-backup
+   docker pull berry-13/mongodb-backup
    ```
 
-2. Build the Docker image:
-
-   ```sh
-   docker build -t mongo-backup .
-   ```
-
-3. Run the Docker container:
+2. Run the Docker container:
 
    ```sh
    docker run -d \
