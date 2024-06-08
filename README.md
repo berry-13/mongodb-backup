@@ -13,7 +13,7 @@ This Docker container automates backups for a MongoDB database using `mongodump`
 1. Pull the image:
 
    ```sh
-   docker pull berry-13/mongodb-backup
+   docker pull ghcr.io/berry-13/mongodb-backup:latest
    ```
 
 2. Run the Docker container:
