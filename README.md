@@ -33,6 +33,7 @@ This Docker container automates backups for a MongoDB database using `mongodump`
 
 - The `MONGO_URI` environment variable specifies the MongoDB connection string
 - The `BACKUP_INTERVAL` environment variable specifies the interval between backups in seconds (default is 86400 seconds, or 24 hours)
+- Check the .env.example for the `RETENTION_STRATEGY`
 - Backups are stored in the `/backup/data` directory inside the container
 
 ### Backup Script
