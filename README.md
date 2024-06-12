@@ -4,10 +4,6 @@ This Docker container automates backups for a MongoDB database using `mongodump`
 
 ## Usage
 
-### Prerequisites
-
-- Docker installed on your machine
-
 ### Instructions
 
 1. Pull the image:
